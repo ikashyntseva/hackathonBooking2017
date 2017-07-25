@@ -4,7 +4,6 @@ var $ = window.jQuery;
 $(document).ready(function() {
     var $liveChat = $("#liveChat_widget_wrapper");
     var $liveChatButton = $("#liveChat_icon");
-    var $liveChatConversations = $("#conversations");
     var $liveChatPostMessageBtn = $("liveChat_postMessageButton");
     var $liveChatBotTimeStamp = $("#conversations .message_bot .timestamp");
     //Open/close widget
@@ -18,6 +17,7 @@ $(document).ready(function() {
     $("#new_message").submit(postMessage);
 
     function postMessage (e) {
+        var $liveChatConversations = $("#conversations");
         var $liveChat_inputContainer = $("#liveChat_input-container");
         var $userInput = $("#userInput");
         var userText = $userInput.val();
@@ -44,31 +44,25 @@ $(document).ready(function() {
                                             "</div>" +
                                         "</div>" +
                                     "</div>" +
+                                    "<div class=\"timestamp\">" + timeStamp + "</div>" +
                                 "</div>" +
-                                "<div class=\"timestamp\">" + timeStamp + "</div>" +
                             "</li>";
 
         if (userText) {
             $liveChatConversations.add(messageTemplate).appendTo($liveChatConversations);
             $liveChat_inputContainer.removeClass("error");
-            var msgData = {
-                'A_id': 'client',
-                'B_id': 'CSA',
-                'msg': userText,
-                'timeStamp': time,
-                'sender': 'CSA',
-                'category': 'hotelName'
-            }
-            if (typeof $.cookie("message") !== "undefined") {
-                $.removeCookie("message");
-            }
-            $.cookie("message", msgData);
-
             $userInput.val("");
             $.ajax({
                 type: 'POST',
                 url: '',
-                data: msgData,
+                data: {
+                    'A_id': 'client',
+                    'B_id': 'CSA',
+                    'msg': userText,
+                    'timeStamp': time,
+                    'sender': 'CSA',
+                    'category': 'hotelName'
+                },
                 success: function(msg){
                     alert('wow' + msg);
                 }
@@ -89,37 +83,6 @@ $(document).ready(function() {
         return {
             time: currentDate.getTime(),
             timeStamp: hour + ":" + (minutes < 10 ? "0" + minutes : minutes)
-        }
-    }
-
-    var chatMap = [
-        {"type": "1",
-        "question": "Does the hotel have free WiFi?",
-        "answer_1": "Yes! WiFi is available in all areas of the property at no additional cost. Other customers have rated it highly.",
-        "answer_2": null,
-        "button_1": null,
-        "button_2": null,
-        "button_3": null},
-        {"type": "2",
-        "question": "I want to know if the hotel is vegan friendly",
-        "answer_1": "Can I clarify? You want to know:",
-        "answer_2": null,
-        "button_1": "Does this hotel cater for vegans?",
-        "button_2": "Does this hotel cater for vegetarians?",
-        "button_3": "Something else"},
-        {"type": "confirm",
-        "question": "Does this hotel cater for vegans?",
-        "answer": "I can confirm this hotel caters for vegans",
-        "answer_2": "Did this answer your question",
-        "button_1": "Yes",
-        "button_2": "No"}
-    ];
-
-    function postAnswer (type) {
-        var userMessage = $liveChatConversations.find(".message:last-of-type").not(".message_bot");
-        var isUserMessagePresent = userMessage.length;
-        if (isUserMessagePresent) {
-            var userMessageText = userMessage.find(".message-body p")
         }
     }
 });
