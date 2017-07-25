@@ -62,7 +62,8 @@ height: 40px;
 }
 
 #liveChat_widget {
- background: white;
+    background: white;
+    min-height: 397px;
 }
 
 #liveChat_widget_wrapper.active {
@@ -97,6 +98,11 @@ a[data-role="liveChat_close"] {
   min-height: 240px;
 }
 
+#conversations #liveChat_content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 #conversations .message {
   list-style: none;
   display: flex;
@@ -118,7 +124,7 @@ a[data-role="liveChat_close"] {
   justify-content: flex-start;
 }
 
-#conversations .message:last-of-type {
+#conversations .message:last-child {
   margin-bottom: 0;
 }
 
@@ -192,15 +198,16 @@ a[data-role="liveChat_close"] {
   box-sizing: border-box;
 }
 #userInput {
-  font-size: 1em;
-  line-height: 45px;
-  border: 1px solid #003580;
-  resize: none;
-  height: 45px;
-  padding: 0px 6px;
-  margin: 0px;
-  box-shadow: none;
-  display: block;
+      font-size: 1em;
+      line-height: 45px;
+      border: 1px solid #003580;
+      resize: none;
+      height: 45px;
+      padding: 0px 6px;
+      margin: 0px;
+      box-shadow: none;
+      display: block;
+    overflow: hidden;
 }
 #liveChat_input-container.error {
   border: 1px solid red;
@@ -225,4 +232,10 @@ div.timestamp {
 
 textarea:focus, input:focus{
     outline: none;
+}
+.clarify_btns_wrapper {
+    margin: 0 0 15px;
+}
+.clarify_btns_wrapper:last-child {
+    margin-bottom: 0;
 }
