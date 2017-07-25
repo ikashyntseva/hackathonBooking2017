@@ -1,6 +1,5 @@
 import bottle
-from bottle import route, run, template, static_file
-import redis
+from bottle import route, run, template, static_file, request
 import json
 import time
 
@@ -15,12 +14,14 @@ def index():
 def server_static(filename):
     return static_file(filename, root='./static')
 
-@route ('/message', 'PUT')
-def put_msg(request):
+@route ('/message', method='POST')
+def post_msg():
+    print (request)
     data = request.json
+
+    print(data)
     dataBase.append(data)
-    message = data['msg']
-    ans = sampleAns[data['ans']]
+    ans = sampleAns[data['msg']]
     data2 = {};
     data2['A_id'] = data['A_id']
     data2['B_id'] = data['B_id']
@@ -32,7 +33,7 @@ def put_msg(request):
         data2['sender'] = data['A_id']
     data2['category'] = data['category']
     dataBase.append(data2)
-    print ('triggered')
+    print (dataBase)
     return dataBase
 
 if __name__ == "__main__":
