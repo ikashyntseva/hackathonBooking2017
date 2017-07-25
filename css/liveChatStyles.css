@@ -1,19 +1,29 @@
+body {
+  margin: 0;
+}
+
+img.bg {
+  max-width: 100%;
+}
+
 #liveChat_container {
-  font-family: Verdana, sans-serif;
+	font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
 }
 
 #liveChat_icon {
+  z-index: 1000;
   position: fixed;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   bottom: 30px;
   right: 30px;
-  background: blue;
+  background: #003580;
   cursor: pointer;
+  overflow: hidden;
 }
 
 #liveChat_icon:after {
-  content: "B";
+  content: url(../images/bot-button.png);
   color: #fff;
   font: inherit;
   height: 100%;
@@ -23,19 +33,36 @@
   text-align: center;
 }
 
+
+#liveChat_icon.open {
+  border-radius: 100%;
+  width: 48px;
+  height: 48px;
+}
+
+#liveChat_icon.close {
+border-radius: 0 0 10px 10px;
+height: 40px;
+}
+
 #liveChat_icon.close:after {
-  content: "X";
+  content: url(../images/close-white.svg);
 }
 
 #liveChat_widget_wrapper {
-  background: #abc;
+  background: #003580;
   width: 600px;
-  position: absolute;
+  position: fixed;
   right: 30px;
-  bottom: 110px;
+  bottom: 60px;
   min-height: 400px;
-  padding-bottom: 7px;
+  border-radius: 10px;
+  padding: 10px;
   display: none;
+}
+
+#liveChat_widget {
+ background: white;
 }
 
 #liveChat_widget_wrapper.active {
@@ -43,8 +70,8 @@
 }
 a[data-role="liveChat_close"] {
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   top: 10px;
   right: 10px;
   cursor: pointer;
@@ -52,12 +79,17 @@ a[data-role="liveChat_close"] {
 
 #liveChat_header {
   height: 50px;
-  background: grey;
   position: relative;
 }
 #liveChat_widget_header {
   line-height: 50px;
+  color: #003580;
+  font-weight: bold;
+  font-size: 1.25em;
   text-align: center;
+}
+#liveChat_header img.close {
+  max-height: 18px;
 }
 
 #conversations {
@@ -68,7 +100,22 @@ a[data-role="liveChat_close"] {
 #conversations .message {
   list-style: none;
   display: flex;
+  flex-direction: row-reverse;
   margin-bottom: 15px;
+  padding-bottom: 1.5em;
+  position: relative;
+}
+
+#conversations .message.message_bot {
+  flex-direction: row !important;
+}
+
+#conversations .message .message-outer-wrap {
+  justify-content: flex-end;
+}
+
+#conversations .message.message_bot .message-outer-wrap {
+  justify-content: flex-start;
 }
 
 #conversations .message:last-of-type {
@@ -78,21 +125,38 @@ a[data-role="liveChat_close"] {
 #conversations .message_image {
   width: 50px;
   height: 50px;
-  border-radius: 50px;
-  background: blue;
+  border-radius: 5px 5px 0 5px;
+  background: #003580;
+}
+
+.message_image-bot {
   margin-right: 10px;
 }
 
+.message_image-user {
+  margin-left: 10px;
+}
 #conversations .message_image img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50px;
+  border-radius: 5px 5px 0 5px;
+  max-width: 50px;
+  height: auto;
 }
 
 #conversations .message_image-user {
   background: transparent;
 }
 
+.message-body {
+  display: flex;
+  min-height: 50px;
+  background: #FAF3E1;
+  padding: 0 0.5em;
+  border-radius: 5px 5px 5px 0;
+}
+
+.message_bot .message-body {
+  background: #E9F0FA;
+}
 
 .message-outer-wrap {
   display: flex;
@@ -102,7 +166,7 @@ a[data-role="liveChat_close"] {
 }
 
 .message-outer-wrap p {
-  margin: 0;
+  line-height: 1.25;
 }
 
 #liveChat_input-container {
@@ -112,8 +176,13 @@ a[data-role="liveChat_close"] {
 }
 
 #liveChat_input-container button {
+  background: url('../images/send.svg');
+  background-repeat: no-repeat;
+  width: 30px;
+  border: none;
+  text-indent: -9999px; 
   position: absolute;
-  right: 25px;
+  right: 10px;
   top: 50%;
   height: 30px;
   margin-top: -16px;
@@ -123,8 +192,9 @@ a[data-role="liveChat_close"] {
   box-sizing: border-box;
 }
 #userInput {
+  font-size: 1em;
   line-height: 45px;
-  border: none;
+  border: 1px solid #003580;
   resize: none;
   height: 45px;
   padding: 0px 6px;
@@ -134,4 +204,25 @@ a[data-role="liveChat_close"] {
 }
 #liveChat_input-container.error {
   border: 1px solid red;
+}
+
+div.timestamp {
+  color: #666;
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  bottom: 0;
+  font-size: small;
+}
+
+#liveChat_footer {
+  padding-bottom: 10px;
+}
+
+.message_bot div.timestamp {
+  text-align: left;
+}
+
+textarea:focus, input:focus{
+    outline: none;
 }

@@ -6,15 +6,16 @@
     <link rel="stylesheet" href="css/liveChatSTyles.css" />
     <script src="js/jquery-3.2.1.slim.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/carhartl-jquery-cookie-v1.4.1-0-g7f88a4e/jquery.cookie.js"></script>
     <script src="js/LiveChatJs.js"></script>
 </head>
 <body>
+    <img src="images/booking-home.jpg" class="bg"/>
     <div id="liveChat_container">
         <span id="liveChat_icon" class="open"></span>
         <div id="liveChat_widget_wrapper">
+        <div id="liveChat_widget">
             <div id="liveChat_header">
-                <a data-role="liveChat_close">x</a>
+                <a data-role="liveChat_close"><img src="images/close.svg" class="close" alt="Close this window"></a>
                 <div id="liveChat_widget_header">
                     Booking Assistant
                 </div>
@@ -23,18 +24,18 @@
                 <ul id="conversations" class="rmz-fade" style="opacity: 1;">
                     <li class="message message_bot">
                         <div class="message_image message_image-bot">
-                            <!--<img src="https://s-ec.bstatic.com/static/img/contact/cs/cs-brad-hi/39c4a6c333aaa6e63b9bae6ea8f99fe65e50f2fc.png" alt="BookingBot">-->
+                            <img src="images/booking-b.png" alt="BookingBot">
                         </div>
                         <div class="message-outer-wrap">
                             <div class="message-wrap">
                                 <div class="message-wrap2">
                                     <div class="message-body">
-                                        <p>Hi <span class="userName">[Jinny]</span>, anything I can help you with?</p>
+                                        <p>Hey! Can i help you?</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="timestamp"></div>
                         </div>
+                        <div class="timestamp"></div>
                     </li>
                 </ul>
             </div>
@@ -46,6 +47,7 @@
                     </div>
                 </form>
             </div>
+        </div>
         </div>
     </div>
 </body>
