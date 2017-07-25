@@ -1,0 +1,137 @@
+#liveChat_container {
+  font-family: Verdana, sans-serif;
+}
+
+#liveChat_icon {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 30px;
+  right: 30px;
+  background: blue;
+  cursor: pointer;
+}
+
+#liveChat_icon:after {
+  content: "B";
+  color: #fff;
+  font: inherit;
+  height: 100%;
+  width: 100%;
+  display: block;
+  line-height: 50px;
+  text-align: center;
+}
+
+#liveChat_icon.close:after {
+  content: "X";
+}
+
+#liveChat_widget_wrapper {
+  background: #abc;
+  width: 600px;
+  position: absolute;
+  right: 30px;
+  bottom: 110px;
+  min-height: 400px;
+  padding-bottom: 7px;
+  display: none;
+}
+
+#liveChat_widget_wrapper.active {
+  display: block;
+}
+a[data-role="liveChat_close"] {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+#liveChat_header {
+  height: 50px;
+  background: grey;
+  position: relative;
+}
+#liveChat_widget_header {
+  line-height: 50px;
+  text-align: center;
+}
+
+#conversations {
+  padding: 10px;
+  min-height: 240px;
+}
+
+#conversations .message {
+  list-style: none;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+#conversations .message:last-of-type {
+  margin-bottom: 0;
+}
+
+#conversations .message_image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: blue;
+  margin-right: 10px;
+}
+
+#conversations .message_image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+}
+
+#conversations .message_image-user {
+  background: transparent;
+}
+
+
+.message-outer-wrap {
+  display: flex;
+  flex: 1;
+  line-height: 50px;
+  justify-content: space-between;
+}
+
+.message-outer-wrap p {
+  margin: 0;
+}
+
+#liveChat_input-container {
+  position: relative;
+  width: 100%;
+
+}
+
+#liveChat_input-container button {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  height: 30px;
+  margin-top: -16px;
+}
+#liveChat_input-container textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+#userInput {
+  line-height: 45px;
+  border: none;
+  resize: none;
+  height: 45px;
+  padding: 0px 6px;
+  margin: 0px;
+  box-shadow: none;
+  display: block;
+}
+#liveChat_input-container.error {
+  border: 1px solid red;
+}
