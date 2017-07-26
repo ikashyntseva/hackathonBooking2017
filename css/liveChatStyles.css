@@ -16,7 +16,7 @@ img.bg {
   width: 48px;
   height: 48px;
   bottom: 30px;
-  right: 30px;
+  right: 50px;
   background: #003580;
   cursor: pointer;
   overflow: hidden;
@@ -53,7 +53,7 @@ height: 40px;
   background: #003580;
   width: 600px;
   position: fixed;
-  right: 30px;
+  right: 50px;
   bottom: 60px;
   min-height: 400px;
   border-radius: 10px;
@@ -62,7 +62,7 @@ height: 40px;
 }
 
 #liveChat_widget {
- background: white;
+  background: white;
 }
 
 #liveChat_widget_wrapper.active {
