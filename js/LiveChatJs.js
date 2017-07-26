@@ -233,6 +233,7 @@ $(document).ready(function() {
                     else {
                         postMessage(null, type, chatMap[key].answer);
                     }
+                    break;
 
                 }
                 else {
