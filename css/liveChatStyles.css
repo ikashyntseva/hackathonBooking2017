@@ -24,14 +24,14 @@ img.bg {
 }
 
 #liveChat_icon:after {
-  content: url(../images/bot-button.png);
-  color: #fff;
-  font: inherit;
-  height: 100%;
-  width: 100%;
-  display: block;
-  line-height: 50px;
-  text-align: center;
+    content: url(../images/bot-button.png);
+    color: #fff;
+    font: inherit;
+    height: 100%;
+    width: 100%;
+    display: block;
+    line-height: 50px;
+    text-align: center;
 }
 
 
