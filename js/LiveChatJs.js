@@ -19,17 +19,17 @@ $(document).ready(function() {
                 "button_3": null
             },
             "not_easy": {
-                "question_1": "I want to know if the hotel is vegan friendly",
+                "question_1": "Can I cancel for free nearer the time?",
                 "question_2": null,
-                "answer": "Can I clarify? You want to know:",
-                "button_1": "Does this hotel cater for vegans?",
-                "button_2": "Does this hotel cater for vegetarians?",
+                "answer": "Just to clarify, did you mean:",
+                "button_1": "Does this hotel offer free cancellation?",
+                "button_2": "What is the latest date/time I can cancel this room?",
                 "button_3": "Something else"
             },
             "confirm": {
-                "question_1": "Does this hotel cater for vegans?",
-                "question_2": "Does this hotel cater for vegetarians?",
-                "answer": "I can confirm this hotel caters for vegans",
+                "question_1": "Does this hotel offer free cancellation?",
+                "question_2": "What is the latest date/time I can cancel this room?",
+                "answer": "Yes – please select 'I'll reserve' from the options. You'll be able to cancel your booking at a later date.",
                 "answer_2": "Did this answer your question?",
                 "button_1": "Yes",
                 "button_2": "No"
