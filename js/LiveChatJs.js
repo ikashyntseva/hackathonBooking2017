@@ -45,7 +45,7 @@ $(document).ready(function() {
             "no": {
                 "question_1": "No",
                 "question_2": null,
-                "answer": "Can I help you with anything else?",
+                "answer": "Great! Enjoy your trip to Berlin, Taylor.",
                 "button_1": null,
                 "button_2": null,
                 "button_3": null
