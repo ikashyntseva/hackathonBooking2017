@@ -1,5 +1,6 @@
 body {
   margin: 0;
+    background: url("../images/booking-home.jpg");
 }
 
 img.bg {
@@ -98,7 +99,7 @@ a[data-role="liveChat_close"] {
   min-height: 240px;
 }
 
-#conversations #liveChat_content {
+#liveChat_content {
     max-height: 400px;
     overflow-y: auto;
 }
