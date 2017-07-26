@@ -13,15 +13,15 @@ img.bg {
 }
 
 #liveChat_icon {
-  z-index: 1000;
-  position: fixed;
-  width: 48px;
-  height: 48px;
-  bottom: 30px;
-  right: 30px;
-  background: #003580;
-  cursor: pointer;
-  overflow: hidden;
+    z-index: 1000;
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    bottom: 30px;
+    right: 30px;
+    background: #003580;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 #liveChat_icon:after {
