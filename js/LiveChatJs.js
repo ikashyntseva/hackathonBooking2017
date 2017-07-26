@@ -169,25 +169,25 @@ $(document).ready(function() {
                     $("#new_message").show();
                 })
             }
-            
-            var msgData = {
+
+            /*var msgData = {
                 'A_id': 'client',
                 'B_id': 'CSA',
                 'msg': userText,
                 'timeStamp': time,
                 'sender': 'CSA',
                 'category': 'hotelName'
-            }
+            }*/
 
             $userInput.val("");
-            $.ajax({
+            /*$.ajax({
                 type: 'POST',
                 url: '',
                 data: msgData,
                 success: function(msg){
                     alert('wow' + msg);
                 }
-            });
+            });*/
         }
         else {
             $liveChat_inputContainer.addClass("error");
