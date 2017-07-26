@@ -36,8 +36,8 @@ img.bg {
 
 #liveChat_icon.open {
   border-radius: 100%;
-  width: 48px;
-  height: 48px;
+  width: 58px;
+  height: 58px;
 }
 
 #liveChat_icon.close {
@@ -223,6 +223,24 @@ div.timestamp {
   text-align: left;
 }
 
-textarea:focus, input:focus{
+textarea:focus, input:focus, button:focus{
     outline: none;
+}
+
+.clarify_btns_wrapper {
+  margin-bottom: 1em;
+  margin-top: -0.75em;
+}
+
+.clarify_btns_wrapper button {
+    border-radius: 5px;
+    background: #0093CF;
+    width: 100%;
+    border: 0;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 0.25em;
+    
 }
