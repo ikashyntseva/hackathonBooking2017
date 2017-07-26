@@ -5,17 +5,19 @@ $(document).ready(function() {
     var $liveChat = $("#liveChat_widget_wrapper");
     var $liveChatButton = $("#liveChat_icon");
     var $liveChatConversations = $("#conversations");
-    var $liveChatPostMessageBtn = $("liveChat_postMessageButton");
     var $liveChatBotTimeStamp = $("#conversations .message_bot .timestamp");
+    var $liveChatForm = $("#new_message");
+    var $userInput = $("#userInput");
 
-    var chatMap = {"easy": {
+    var chatMap = {
+            "easy": {
                 "question_1": "Does the hotel have free WiFi?",
                 "question_2": null,
                 "answer": "Yes! WiFi is available in all areas of the property at no additional cost. Other customers have rated it highly.",
                 "button_1": null,
                 "button_2": null,
                 "button_3": null
-                },
+            },
             "not_easy": {
                 "question_1": "I want to know if the hotel is vegan friendly",
                 "question_2": null,
@@ -32,64 +34,58 @@ $(document).ready(function() {
                 "button_1": "Yes",
                 "button_2": "No"
             },
-            "yesNo": {
+            "yes": {
                 "question_1": "Yes",
                 "question_2": null,
                 "answer": "Can I help you with anything else?",
                 "button_1": null,
                 "button_2": null,
                 "button_3": null
-            }
+            },
+            "no": {
+                "question_1": "No",
+                "question_2": null,
+                "answer": "Can I help you with anything else?",
+                "button_1": null,
+                "button_2": null,
+                "button_3": null
+        }
     };
 
-    /*var chatMap = [
-        {"type": "1",
-            "question": "Does the hotel have free WiFi?",
-            "answer": "Yes! WiFi is available in all areas of the property at no additional cost. Other customers have rated it highly.",
-            "question_2": null,
-            "button_1": null,
-            "button_2": null,
-            "button_3": null},
-        {"type": "2",
-            "question_1": "I want to know if the hotel is vegan friendly",
-            "question_2": null,
-            "answer": "Can I clarify? You want to know:",
-            "button_1": "Does this hotel cater for vegans?",
-            "button_2": "Does this hotel cater for vegetarians?",
-            "button_3": "Something else"},
-        {"type": "confirm",
-            "question_1": "Does this hotel cater for vegans?",
-            "question_2": "Did this answer your question?",
-            "answer": "I can confirm this hotel caters for vegans",
-            "button_1": "Yes",
-            "button_2": "No"}
-    ];*/
     //Open/close widget
-    $(document).on("click", "#liveChat_icon, [data-role='liveChat_close']", function(){
+    $(document).on("click", "#liveChat_icon, [data-role='liveChat_close']", function (){
         $liveChat.toggleClass("active");
         $liveChatButton.toggleClass("close");
     });
 
-    $liveChatBotTimeStamp.text(getCurrentime().timeStamp);
-    $("#userInput").keypress(function(e) {
-        if (event.which === 13) {
-            postMessage(null, null);
-            e.preventDefault();
-        }
-    })
+    $liveChatBotTimeStamp.text(getCurrentTime().timeStamp);
 
-    $("#new_message").submit(postMessage);
+    setPostMessage();
 
+    //function for checking if visitor sent message to assistant
     setInterval(postAnswer, 2000);
+
+
+    function setPostMessage () {
+        //function to send messages by pressing Enter
+        $userInput.keypress(function(e) {
+            if (event.which === 13) {
+                postMessage(null, null);
+                e.preventDefault();
+            }
+        })
+
+        $liveChatForm.submit(postMessage);
+    }
 
     function postMessage (e, typeQuestion, text) {
         var $liveChat_inputContainer = $("#liveChat_input-container");
-        var $userInput = $("#userInput");
         var userText = text || $userInput.val();
         var messageTemplate = "";
+
         // get time when message was sent
-        var time = getCurrentime().time;
-        var timeStamp = getCurrentime().timeStamp;
+        var time = getCurrentTime().time;
+        var timeStamp = getCurrentTime().timeStamp;
 
         var isEasyQuestion = typeQuestion === "easy";
         var isNotEasyQuestion = typeQuestion === "not_easy";
@@ -164,8 +160,8 @@ $(document).ready(function() {
         if (userText) {
             $liveChatConversations.add(messageTemplate).appendTo($liveChatConversations);
             $liveChat_inputContainer.removeClass("error");
-            if (typeQuestion !== "easy" || typeQuestion !== "yesNo") {
 
+            if (typeQuestion !== "easy" || typeQuestion !== "yes") {
                 $(".clarify_btns_wrapper button").on("click", function () {
                     var $this = $(this);
                     postMessage(e, null, $this.text());
@@ -197,9 +193,10 @@ $(document).ready(function() {
         }
 
         e && e.preventDefault();
+        $("#liveChat_content").scrollTop($("#liveChat_content")[0].scrollHeight);
     }
 
-    function getCurrentime () {
+    function getCurrentTime () {
         var currentDate = new Date();
         var hour = currentDate.getHours();
         var minutes = currentDate.getMinutes();
@@ -210,24 +207,26 @@ $(document).ready(function() {
         }
     }
 
-
     function postAnswer (type) {
         var userMessage = $liveChatConversations.find(".message:last-of-type").not(".message_bot");
         var isUserMessagePresent = userMessage.length;
+
         if (isUserMessagePresent) {
             var userMessageText = userMessage.find(".message-body p").text();
+            var validMessage = false;
 
             for (var key in chatMap) {
                 if (userMessageText === chatMap[key].question_1 || userMessageText === chatMap[key].question_2) {
+                    validMessage = true;
                     var type = key;
-                    if (type !== "easy" && type !== "yesNo") {
+                    if (type !== "easy" && type !== "yes") {
                         $("#new_message").hide();
                     }
                     if (type === "confirm") {
                         postMessage(null, "easy", chatMap[key].answer);
                         postMessage(null, type, chatMap[key].answer_2);
                     }
-                    else if (type === "yesNo") {
+                    else if (type === "yes") {
                         postMessage(null, "easy", chatMap[key].answer);
                     }
                     else {
@@ -235,6 +234,13 @@ $(document).ready(function() {
                     }
 
                 }
+                else {
+                    validMessage = false;
+                }
+            }
+
+            if (!validMessage) {
+                postMessage(null, "easy", "Hmm... not quite sure what you meant there. Want to try again?");
             }
 
         }
