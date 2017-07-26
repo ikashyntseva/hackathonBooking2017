@@ -189,6 +189,7 @@ $(document).ready(function() {
                 }
             });*/
         }
+
         else {
             $liveChat_inputContainer.addClass("error");
         }
