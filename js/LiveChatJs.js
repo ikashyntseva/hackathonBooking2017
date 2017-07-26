@@ -169,6 +169,7 @@ $(document).ready(function() {
                     $("#new_message").show();
                 })
             }
+            
             var msgData = {
                 'A_id': 'client',
                 'B_id': 'CSA',
