@@ -139,7 +139,7 @@ $(document).ready(function() {
         else {
             messageTemplate = "<li class=\"message\">" +
                 "<div class=\"message_image message_image-user\">" +
-                "<img src=\"https://secure.gravatar.com/avatar/c176613274648daac5d8234a5e6c7f08?default=https%3A%2F%2Fwww.reamaze.com%2Fassets%2Fdefault_avatars%2Fmissing_thumb-a34d628cbdca4ad7e9e0a03eacf61244.jpg&amp;amp;rating=pg&amp;amp;size=48\" alt=\"Irina Kashyntseva\">" +
+                "<img src=\"images/avatar.jpeg\" alt=\"Irina Kashyntseva\">" +
                 "</div>" +
                 "<div class=\"message-outer-wrap\">" +
                 "<div class=\"message-wrap\">" +
