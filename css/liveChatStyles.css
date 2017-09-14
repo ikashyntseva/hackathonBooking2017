@@ -20,6 +20,7 @@ img.bg {
   background: #003580;
   cursor: pointer;
   overflow: hidden;
+  
 }
 
 #liveChat_icon:after {
